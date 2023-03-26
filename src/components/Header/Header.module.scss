@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-bottom: 0;
+    font-weight: 500;
+    background-color: #FFFFFF;
+    width: 100%;
+}
+
+.list {
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.title {
+    position: relative;
+    top: 5px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.avatar {
+  margin-left: 13px;
+}

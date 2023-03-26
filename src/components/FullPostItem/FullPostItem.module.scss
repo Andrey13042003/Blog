@@ -1,0 +1,52 @@
+.element {
+  background-color: #FFFFFF;
+  width: 940px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.postname {
+  color: #1890FF;
+}
+
+.name {
+  margin: 0;
+}
+
+.element__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title, .profile {
+  display: flex;
+  gap: 15px;
+}
+
+.data {
+  font-size: 12px;
+  color: #00000080;
+}
+
+.like {
+  border: none;
+  background-color: transparent;
+  position: relative;
+  bottom: 15px;
+}
+
+.tag {
+  padding: 3px;
+  font-size: 13px;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0.5);
+  background-color: #FFFFFF;
+}
+
+.tags {
+  display: flex;
+  gap: 5px;
+}

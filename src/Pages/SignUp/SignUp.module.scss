@@ -1,6 +1,16 @@
 .form {
   width: 384px;
-  height: 599px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  align-items: center;
+  border-radius: 5px;
+  padding: 35px;
+}
+
+.formError {
+  width: 384px;
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
@@ -28,7 +38,14 @@
   border-radius: 5px;
   height: 40px;
   padding: 8px 12px;
-  color: rgba(217, 217, 217, 1);
+}
+
+.input_error {
+  border: 2px solid rgba(245, 34, 45, 1);
+  border-radius: 5px;
+  height: 40px;
+  padding: 8px 12px;
+  outline-color: rgba(245, 34, 45, 1);
 }
 
 .agreement {
@@ -81,4 +98,8 @@
 
 .sign_in {
   text-decoration: none;
+}
+
+.message {
+  color: rgba(245, 34, 45, 1);
 }

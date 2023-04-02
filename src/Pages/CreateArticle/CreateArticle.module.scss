@@ -1,38 +1,45 @@
-.form {
-  width: 384px;
-  height: 374px;
-  background-color: #FFFFFF;
+.create {
+  width: 938px;
   display: flex;
   flex-direction: column;
   gap: 21px;
-  align-items: center;
-  border-radius: 5px;
-  padding: 35px;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 45px;
 }
 
-.user_info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.title {
+  margin: 0 auto;
 }
 
 .label {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 5px;
 }
 
 .input {
+  width: 100%;
   border: 2px solid rgba(217, 217, 217, 1);
   border-radius: 5px;
   height: 40px;
   padding: 8px 12px;
-  color: rgba(217, 217, 217, 1);
 }
 
-.create {
-  width: 100%;
+.textarea {
+  height: 168px;
+}
+
+.tags {
+  display: flex;
+  gap: 20px;
+}
+
+.tag_width {
+  width: 300px;
+}
+
+.send {
+  width: 320px;
   height: 40px;
   color: white;
   background-color: rgba(24, 144, 255, 1);
@@ -40,6 +47,3 @@
   border: none;
 }
 
-.sign_up {
-  text-decoration: none;
-}

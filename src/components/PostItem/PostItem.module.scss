@@ -33,16 +33,19 @@
   text-decoration: none;
 }
 
-.data {
+.date {
     font-size: 12px;
     color: #00000080;
+}
+
+.counter {
+  position: relative;
+  bottom: -2px;
 }
 
 .like {
     border: none;
     background-color: transparent;
-    position: relative;
-    bottom: 15px;
 }
 
 .tag {

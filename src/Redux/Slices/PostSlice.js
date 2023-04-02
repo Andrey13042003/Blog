@@ -23,7 +23,7 @@ export const getPostInfo = createAsyncThunk('post/getPostInfo', async function (
 
 const postReducer = createSlice({
   name: 'post',
-  initialState, 
+  initialState,
   extraReducers: {
     [getPostInfo.pending]: (state) => {
       state.status = 'loading';

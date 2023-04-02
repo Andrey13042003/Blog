@@ -5,16 +5,16 @@ const initialState = {
 };
 
 const fullPostReducer = createSlice({
-  name: 'fullPost', 
-  initialState, 
+  name: 'fullPost',
+  initialState,
   reducers: {
     setFullPost(state, action) {
       state.item = action.payload;
-    }, 
+    },
     deleteFullPost(state) {
       state.item = {};
-    }
-  }
+    },
+  },
 });
 
 export const { setFullPost, deleteFullPost } = fullPostReducer.actions;

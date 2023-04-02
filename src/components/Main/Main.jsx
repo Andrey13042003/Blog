@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { getPostInfo } from '../../Redux/Slices/PostSlice';
-import { setLoader } from '../../Redux/Slices/LoaderSlice';
-import Spiner from '../Spiner';
-import Error from '../Error';
-import PostItem from '../PostItem';
+import Spiner from '../Spiner/Spiner';
+import Error from '../Error/Error';
+import PostItem from '../PostItem/PostItem';
 
 import classes from './Main.module.scss';
 
@@ -29,13 +29,9 @@ const Main = () => {
     return <Error />;
   }
     
-  let items = data.items.map((item, idx) => <PostItem key={idx} item={item} />);
+  let items = data.items.map((item) => <PostItem key={uuidv4()} item={item} />);
 
-  return (
-    <main> 
-      <ul className={classes.list}>{items}</ul>
-    </main>
-  );
+  return <ul className={classes.list}>{items}</ul>;
 };
 
 export default Main;

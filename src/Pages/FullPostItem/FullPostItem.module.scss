@@ -21,9 +21,15 @@
   justify-content: space-between;
 }
 
-.title, .profile {
+.title, .info {
   display: flex;
   gap: 15px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .data {
@@ -49,4 +55,9 @@
 .tags {
   display: flex;
   gap: 5px;
+}
+
+.btn {
+  display: flex;
+  gap: 10px;
 }

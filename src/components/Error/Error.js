@@ -2,7 +2,7 @@ import { Alert, Space } from 'antd';
 
 const Error = () => {
   return (
-    <Space style={{paddingTop: 20}}>
+    <Space style={{ paddingTop: 20 }}>
       <Alert
         message="Error !!!"
         description="Sorry but we can't find posts ( Please, try later"

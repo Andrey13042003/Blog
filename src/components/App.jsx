@@ -1,58 +1,58 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 
-import { setPage } from '../Redux/Slices/PageSlice';
-
-import Header from './Header';
-import Main from './Main';
-import Pagination from './Pagination';
-import FullPostItem from './FullPostItem';
-import SignUp from './SignUp';
-import SignIn from './SignIn';
-import Error from './Error';
+import { useEffect } from 'react';
+import SignUp from '../Pages/SignUp/SignUp';
+import FullPostItem from '../Pages/FullPostItem/FullPostItem';
+import SignIn from '../Pages/SignIn/SignIn';
+import EditProfile from '../Pages/EditProfile/EditProfile';
+import ShowPage from '../Pages/ShowPage/ShowPage';
+import CreatePage from '../Pages/CreateArticle/CreateArticle';
+import EditArticle from '../Pages/EditArticle/EditArticle';
+import { getUserInfo } from '../Redux/Slices/UserSlice';
+import { setToken } from '../Redux/Slices/UserSlice';
+import Header from './Header/Header';
+import Error from './Error/Error';
 
 import classes from './App.module.scss';
 
 const App = () => {
-  const status = useSelector((state) => state.post.status);
   const fullPost = useSelector((state) => state.full.item);
   const dispatch = useDispatch();
 
+  const token = localStorage.getItem('token');
   let path;
 
-  const changePage = (page) => dispatch(setPage(page));
-
-  const joinComponents = (component) => {
-    return (
-      <>
-        <Header />
-        {component}
-      </>
-    );
-  };
+  useEffect(() => {
+    async function getSomeData() {
+      await dispatch(getUserInfo());
+      await dispatch(setToken(token));
+    }
+    token && getSomeData();
+  }, [token]);
 
   if (Object.keys(fullPost) !== 0) {
     path = `/articles/${fullPost.slug}`;
   }
 
-  let condition =
-    status !== 'loading' && Object.keys(fullPost).length === 0 && status !== 'rejected' ? (
-      <Pagination changePage={changePage} />
-    ) : null;
-
   return (
     <div className={classes.App}>
       <Router> 
-        <Routes>
-          <Route path="/" element={joinComponents(<Main />)} />
-          <Route path="/article" element={joinComponents(<Main />)} />
-          <Route path={path} element={joinComponents(<FullPostItem item={fullPost} />)} />
-          <Route path="/sign-up" element={joinComponents(<SignUp />)} />
-          <Route path="sign-in" element={joinComponents(<SignIn />)} />
-          <Route path="*" element={<Error />} />
-        </Routes>
+        <Header />
+        <main className={classes.main}>
+          <Routes>
+            <Route path="/" element={<ShowPage />} />
+            <Route path="/article" element={<ShowPage />} />
+            <Route path={path} element={<FullPostItem item={fullPost} />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/profile" element={<EditProfile />} />
+            <Route path="/new-article" element={<CreatePage />} />
+            <Route path={'/articles/:slug/edit'} element={<EditArticle />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </main> 
       </Router> 
-      {condition}
     </div> 
   );
 };

@@ -29,7 +29,6 @@
       "prettier/prettier": "warn",
       "linebreak-style": [0, "unix"],
       "no-unused-vars": "warn",
-      "quotes": ["error", "single"],
       "semi": "error",
       "react/react-in-jsx-scope": "off",
       "react/prop-types": 0,

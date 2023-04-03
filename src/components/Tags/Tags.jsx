@@ -1,61 +1,45 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
 
-import classes from '../../Pages/CreateArticle/CreateArticle.module.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeTags, changeTag, addCounter, deleteCounter } from '../../Redux/Slices/ArticleSlice';
 
-export let tagList = [];
+import classes from '../Tags/Tags.module.scss';
 
-const Tags = () => {
-  const [counter, setCounter] = useState(['', '']);
-
-  const addTag = (e) => {
-    e.preventDefault();
-    setCounter((prevCount) => [...prevCount, '']);
-  };
-
-  const deleteTag = (e, idx) => {
-    e.preventDefault();
-    const newCounter = counter.filter((_, index) => idx !== index);
-    if (tagList[idx]) {
-      tagList.splice(idx);
-    }
-    console.log(tagList);
-    setCounter(newCounter);
-  };
+const Tags = ({ idx, register }) => {
+  const dispatch = useDispatch();
+  const tagList = useSelector((state) => state.article.article.tagList);
+  const counter = useSelector((state) => state.article.article.counter);
 
   const handleChange = (e, idx) => {
     if (typeof tagList[idx] === 'undefined') {
-      console.log('undefined');
-      tagList.push(e.target.value);
+      const newList = [...tagList, e.target.value];
+      dispatch(changeTags(newList));
     } else {
-      tagList[idx] = e.target.value;
+      const value = e.target.value;
+      dispatch(changeTag({ idx, value }));
     }
-    console.log(tagList); 
   };
 
-  return counter.map((_, idx) => {
-    return (
-      <div className={classes.tags} key={uuidv4()}> 
-        <input
-          onChange={(e) => handleChange(e, idx)}
-          id="tags"
-          className={classes.input + ' ' + classes.tag_width}
-          value={tagList[idx]}
-          placeholder="Tag"
-        ></input>
-        <button className="btn btn-outline-danger" onClick={(e) => deleteTag(e, idx)}>
-          Delete
-        </button>
-        <button className="btn btn-outline-primary" onClick={(e) => addTag(e)}>
+  return (
+    <div className={classes.tags} key={uuidv4()}> 
+      <input
+        onChange={(e) => handleChange(e, idx)}
+        {...register(`tagList.${idx}.tag`)}
+        id="tags"
+        className={classes.tag_width}
+        value={tagList[idx]}
+        placeholder="Tag"
+      ></input>
+      <button className="btn btn-outline-danger" onClick={() => dispatch(deleteCounter(idx))}>
+        Delete
+      </button>
+      {counter.length - 1 === idx && (
+        <button className="btn btn-outline-primary" onClick={() => dispatch(addCounter())}>
           Add tag
         </button>
-      </div>
-    );
-  });
+      )}
+    </div>
+  );
 };
 
 export default Tags;
-
-/*setValue((prevValue) => {
-  return {...prevValue, uuidv4(): e.target.value};
-});*/

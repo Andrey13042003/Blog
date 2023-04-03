@@ -1,0 +1,20 @@
+.tags {
+  display: flex;
+  gap: 20px;
+}
+
+.tag_width {
+  width: 300px;
+  border: 2px solid rgba(217, 217, 217, 1);
+  border-radius: 5px;
+  height: 40px;
+  padding: 8px 12px;
+}
+
+.input {
+  width: 100%;
+  border: 2px solid rgba(217, 217, 217, 1);
+  border-radius: 5px;
+  height: 40px;
+  padding: 8px 12px;
+}

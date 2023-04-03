@@ -11,7 +11,7 @@ import { isFavorite, unFavorite } from '../../Redux/Slices/ArticleSlice';
 import classes from './PostItem.module.scss';
 
 const PostItem = ({ item }) => {
-  const { author, title, description, tagList, createdAt, slug, body, favoritesCount, favorited } = item;
+  const { author, title, tagList, createdAt, slug, body, favoritesCount, favorited } = item;
 
   const [data, setData] = useState({ favorited, favoritesCount });
   const dispatch = useDispatch();
@@ -80,24 +80,9 @@ const PostItem = ({ item }) => {
       </article>
       <article className={classes.text}> 
         <p>{body}</p>
-        <p>{description}</p>
       </article>
     </li>
   );
 };
 
 export default PostItem;
-
-/* 
-  if (typeof arr != 'undefined') {
-    if (arr[0]) {
-      likes = <Icon icon="ant-design:heart-filled" color="red" width="20" height="20" />;
-    } else {
-      likes = <Icon icon="ant-design:heart-outlined" width="20" height="20" />;
-    }
-  } else {
-    likes = <Icon icon="ant-design:heart-outlined" width="20" height="20" />;
-  }
-      const { favorited, favoritesCount } = data.payload.article;
-    dispatch(changeFavorite({ slug, favorited, favoritesCount }));
-*/

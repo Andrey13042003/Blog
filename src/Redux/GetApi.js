@@ -6,6 +6,9 @@ export const getApi = createApi({
   reducerPath: 'getApi',
   baseQuery: fetchBaseQuery({ baseUrl: PATH }),
   endpoints: (builder) => ({
+    getFullPost: builder.query({
+      query: (slug) => `articles/${slug}`,
+    }),
     addNewUser: builder.mutation({
       query: (body) => ({
         url: 'users',
@@ -16,4 +19,4 @@ export const getApi = createApi({
   }),
 });
 
-export const { useAddNewUserMutation } = getApi;
+export const { useAddNewUserMutation, useGetFullPostQuery } = getApi;

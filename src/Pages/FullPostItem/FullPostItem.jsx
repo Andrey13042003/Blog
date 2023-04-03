@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 import DeleteForm from '../DeleteForm/DeleteForm';
 
 import classes from './FullPostItem.module.scss';
@@ -11,7 +12,7 @@ import classes from './FullPostItem.module.scss';
 const FullPostItem = ({ item }) => {
   const { username } = useSelector((state) => state.user.user);
 
-  const { title, author, description, tagList, createdAt, body, slug } = item;
+  const { title, author, description, tagList, createdAt, body, slug, favoritesCount } = item;
 
   let tags; 
   let isAuth = author.username === username;
@@ -36,7 +37,12 @@ const FullPostItem = ({ item }) => {
             <h4 className={classes.postname}>{title}</h4>
             {tags && <div className={classes.tags}>{tags}</div>}
           </div>
-          <button className={classes.like}>🤍 12</button>
+          <div> 
+            <button className={classes.like}>
+              <Icon icon="ant-design:heart-outlined" width="20" height="20" />
+            </button> 
+            <span className={classes.counter}>{favoritesCount}</span>
+          </div>
         </div>
         <div className={classes.profile}> 
           <div className={classes.info}> 
@@ -58,8 +64,8 @@ const FullPostItem = ({ item }) => {
           )}
         </div>
       </article>
-      <ReactMarkdown>{body}</ReactMarkdown>
       <ReactMarkdown>{description}</ReactMarkdown>
+      <ReactMarkdown>{body}</ReactMarkdown>
     </article>
   );
 };

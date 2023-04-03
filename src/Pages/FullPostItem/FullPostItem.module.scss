@@ -40,8 +40,11 @@
 .like {
   border: none;
   background-color: transparent;
+}
+
+.counter {
   position: relative;
-  bottom: 15px;
+  bottom: -2px;
 }
 
 .tag {

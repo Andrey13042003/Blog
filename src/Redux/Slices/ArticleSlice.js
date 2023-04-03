@@ -7,6 +7,7 @@ const initialState = {
     description: '',
     body: '',
     tagList: [],
+    counter: ['', ''], 
   },
   favorite: {},
 };
@@ -25,9 +26,10 @@ export const deleteArticle = createAsyncThunk('deleteArticle/fetchArticles', asy
   return data;
 });
 
-export const editArticle = createAsyncThunk('editArticle/fetchArticles', async ({ newArticle }, slug) => {
+export const editArticle = createAsyncThunk('editArticle/fetchArticles', async ({ article, slug }) => {
+  console.log(article, slug);
   const { data } = await axios.put(`https://blog.kata.academy/api/articles/${slug}`, {
-    newArticle,
+    article,
   });
 
   return data;
@@ -49,9 +51,28 @@ const articleReducer = createSlice({
   name: 'article',
   initialState,
   reducers: {
+    changeTags(state, action) {
+      state.article.tagList = action.payload;
+    },
+    changeTag(state, action) {
+      const { idx, value } = action.payload;
+      state.article.tagList[idx] = value;
+    }, 
+    addCounter(state) {
+      state.article.counter = [...state.article.counter, ''];
+    },
+    deleteCounter(state, action) {
+      const idx = action.payload;
+      
+      if (state.article.tagList[idx]) {
+        const newList = state.article.tagList.filter((_, index) => index !== idx);
+        state.article.tagList = newList;
+      }
+      state.article.counter.shift();
+    },
   },
 });
 
-export const { changeFavorite } = articleReducer.actions;
+export const { changeTags, changeTag, addCounter, deleteCounter } = articleReducer.actions;
 
 export default articleReducer.reducer;
